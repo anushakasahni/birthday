@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>More Wishes!</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌟 Special Birthday Wishes for You 🌟</h1>
+    
+    <div class="image-circle">
+      <img src="img1.jpg" class="circle">
+      <img src="img2.jpg" class="circle">
+      <img src="img3.jpg" class="circle">
+      <img src="img4.jpg" class="circle">
+      <img src="img5.jpg" class="circle">
+      <img src="img6.jpg" class="circle">
+      <img src="img7.jpg" class="circle">
+      <img src="img8.jpg" class="circle">
+    </div>
+    
+    <div class="wishes">
+      <p>💖 May your day be filled with joy!</p>
+      <p>🎁 Wishing you all the happiness in the world!</p>
+      <p>🌈 Keep shining and smiling!</p>
+    </div>
+    
+    <audio id="birthdayMusic" src="music.mp3" loop autoplay></audio>
+  </div>
+  <div id="rain-container"></div>
+
+  <script>
+    
+    window.onload = function() {
+      const music = document.getElementById('birthdayMusic');
+      const savedTime = sessionStorage.getItem('musicTime');
+      
+      if (savedTime) {
+        music.currentTime = savedTime;
+      }
+      music.play();
+    };
+  </script>
+  <script>
+  const rainContainer = document.getElementById('rain-container');
+  const symbols = ['🎈', '❤️']; // balloon and heart
+
+  function createRainItem() {
+    const item = document.createElement('div');
+    item.classList.add('rain-item');
+    item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+    item.style.left = Math.random() * 100 + 'vw';
+    item.style.fontSize = (Math.random() * 20 + 20) + 'px';
+    item.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    rainContainer.appendChild(item);
+
+
+    setTimeout(() => {
+      rainContainer.removeChild(item);
+    }, 6000);
+  }
+
+
+  setInterval(createRainItem, 200);
+</script>
+
+</body>
+</html>

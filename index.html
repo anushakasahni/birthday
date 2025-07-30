@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Welcome to the Birthday Surprise! ❤️</h1>
+    <button id="startBtn">Click Me - betu</button>
+    
+    <div id="wishSection" style="display:none;">
+      <h2>🎂❤️ Happy Birthday, my dear jaan betu ji  ❤️🎂</h2>
+      <img src="cake1.gif" alt="Birthday Cake Animation" class="cake">
+      <button onclick="window.location.href='second.html'">Click Here for More Wishes betu </button>
+    </div>
+    
+    <audio id="birthdayMusic" src="music.mp3" loop></audio>
+  </div>
+  <div id="rain-container"></div>
+  
+  <script>
+    const btn = document.getElementById('startBtn');
+    const music = document.getElementById('birthdayMusic');
+    const wish = document.getElementById('wishSection');
+
+    btn.onclick = () => {
+      music.play();
+      wish.style.display = 'block';
+      btn.style.display = 'none';
+      
+      setInterval(() => {
+        sessionStorage.setItem('musicTime', music.currentTime);
+      }, 1000);
+    };
+  </script>
+  <script>
+  const rainContainer = document.getElementById('rain-container');
+  const symbols = ['🎈', '❤️']; // balloon and heart
+
+  function createRainItem() {
+    const item = document.createElement('div');
+    item.classList.add('rain-item');
+    item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+    item.style.left = Math.random() * 100 + 'vw';
+    item.style.fontSize = (Math.random() * 20 + 20) + 'px';
+    item.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    rainContainer.appendChild(item);
+
+    // Remove after animation ends
+    setTimeout(() => {
+      rainContainer.removeChild(item);
+    }, 6000);
+  }
+
+  // Create items repeatedly
+  setInterval(createRainItem, 200);
+</script>
+</body>
+</html>
